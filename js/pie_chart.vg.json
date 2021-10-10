@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "data/country_wise_latest.csv"
+  },
+  "title": {
+    "text": "Total Backers per Category",
+    "anchor": "middle",
+    "fontSize": 24
+  },
+  "width": 400,
+  "height": 400,
+  "encoding": {
+    "x": {
+      "axis": {
+        "title": "Total Confirmed Cases",
+        "labelFontSize": 10,
+        "titleFontSize": 15
+      },
+      "field": "Confirmed",
+      "type": "quantitative",
+      "aggregate": "sum"
+    },
+    "y": {
+      "axis": {"title": "Continenets", "labelFontSize": 10, "titleFontSize": 15},
+      "field": "WHO Region",
+      "type": "nominal",
+      "sort": "-x"
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "bar", "cornerRadiusEnd": 4},
+      "encoding": {
+        "color": {
+          "field": "USA or ELSEWHERE",
+          "type": "nominal",
+          "scale": {"domain": ["US", "Other"], "range": ["#8101FA", "#00C7A9"]}
+        },
+        "opacity": {"value": 0.5}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "stroke": "black",
+        "dx": 3,
+        "fontSize": 9
+      },
+      "encoding": {
+        "text": {"field": "Backers", "type": "quantitative", "aggregate": "sum"}
+      }
+    }
+  ]
+}

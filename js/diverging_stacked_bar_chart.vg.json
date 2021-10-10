@@ -1,0 +1,75 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 1000,
+  "height": 600,
+  "title": "COVID-19 Global Recovered/Deaths Cases",
+  "data": {
+    "url": "data/covid_19_data.csv"
+  },
+  "repeat": {
+    "layer": ["Deaths", "Recovered"]
+  },
+  "params": [
+    {
+      "name": "Year_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "2020",
+          "2021"
+        ],
+        "labels": [
+          "Show All",
+          "2020",
+          "2021"
+        ],
+        "name": "Year Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "Year_selection == null || year(datum.ObservationDate) == Year_selection"
+    }
+  ],
+  "spec": {
+    "mark": {
+      "type": "line",
+      "point": true
+    },
+    "encoding": {
+      "x": {
+        "timeUnit": "yearmonth",
+        "field": "ObservationDate",
+        "type": "ordinal",
+        "title": "date"
+      },
+      "y": {
+        "aggregate": "sum",
+        "field": {"repeat": "layer"},
+        "type": "quantitative",
+        "title": "Total recovered/deaths cases over time"
+      },
+      "tooltip":[
+        {"field": "sum_Deaths", "type": "quantitative", "title":"Total Deaths"},
+        {"field": "sum_Recovered", "type": "quantitative", "title":"Total Recovered Cases"},
+        {"timeUnit": "yearmonth","field": "ObservationDate", "type": "ordinal", "title":"Date"}
+        ],
+      "color": {
+        "datum": {"repeat": "layer"},
+        "type": "nominal",
+        "scale": {
+          "domain": [
+            "Deaths",
+            "Recovered"
+          ],
+          "range": [
+            "red",
+            "green"
+          ]
+        }
+      }
+    }
+  }
+}

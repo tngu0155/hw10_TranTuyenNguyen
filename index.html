@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+  
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+
+</head>
+<body>
+<center><h1>Recovered Cases Map for Homework week 9</h1></center>
+<div id="choropleth_map"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<hr>
+
+<center><h1>Total Recoved/Death Cases Line Chart for Homework week 10</h1></center>
+<div id="diverging_stacked_bar_chart"></div>
+<br>
+<br>
+<br>
+<br>
+
+<center><h1>Recovered Cased Scatter Plot for Homework week 10</h1></center>
+<div id="scatter_plot_2"></div>
+
+<div id="pie_chart"></div>
+
+
+
+<script type="text/javascript">
+
+  var spec2 = "js/choropleth_map.vg.json";
+  vegaEmbed('#choropleth_map', spec2).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  
+  // var spec5 = "js/pie_chart.vg.json";
+  // vegaEmbed('#pie_chart', spec5).then(function(result) {
+  // }).catch(console.error);
+  
+</script>
+
+<script type="text/javascript">
+
+  var spec3 = "js/diverging_stacked_bar_chart.vg.json";
+  vegaEmbed('#diverging_stacked_bar_chart', spec3).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+</script>
+
+
+
+<script type="text/javascript">
+
+  var spec4 = "js/scatter_plot_2.vg.json";
+  vegaEmbed('#scatter_plot_2', spec4).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+</script>
+
+
+
+<script type="text/javascript">
+
+  
+</script>
+
+
+</body>
+</html>

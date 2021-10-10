@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "COVID-19 Global Recovered Cases",
+  "width": 800,
+  "height": 600,
+  "data": {
+    "url": "js/ne_110m_admin_0_countries.topojson",
+    "format": {
+          "type": "topojson",
+          "feature": "ne_110m_admin_0_countries"
+        }
+  },
+  "transform": [{
+      "lookup": "properties.NAME",
+      "from": {
+        "data": {
+          "url": "data/country_wise_latest.csv"
+        },
+        "key": "Country/Region",
+        "fields": ["Recovered", "New recovered"]
+      }
+    },
+    {"calculate": "datum.Recovered + 0.1", "as": "Recovered Cases"}
+  ],
+  "projection": {
+    "type": "equirectangular"
+  },
+  "mark": {
+    "type": "geoshape"
+    },
+  "encoding": {
+    "color": {
+      "field": "Recovered Cases",
+      "type": "quantitative",
+      "scale": {"type": "log"}
+    },
+    "tooltip": [
+      {"field": "properties.NAME", "type": "nominal", "title": "Country/Region"},
+      {"field": "Recovered", "type": "quantitative"},
+      {"field": "New recovered", "type": "quantitative"}
+    ]
+  }
+
+}
